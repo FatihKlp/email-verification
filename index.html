@@ -30,5 +30,23 @@
         Email adresiniz başarıyla onaylandı. Şimdi uygulamaya geri dönerek giriş yapabilirsiniz.
       </p>
     </div>
+
+    <script>
+      // Extract token_hash and type from URL
+      const urlParams = new URLSearchParams(window.location.search);
+      const tokenHash = urlParams.get('token_hash');
+      const type = urlParams.get('type');
+
+      // Construct deep link
+      const deepLink = `com.fatihka.PRGM://auth/confirm/page?token_hash=${tokenHash}&type=${type}`;
+
+      // Try to open the app
+      window.location.href = deepLink;
+
+      // Fallback for cases where app is not installed
+      setTimeout(() => {
+        alert('Uygulamayı açamadık. Lütfen manuel olarak giriş yapın.');
+      }, 2000);
+    </script>
   </body>
 </html>
